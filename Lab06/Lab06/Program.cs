@@ -1,40 +1,52 @@
 ﻿using System;
-
-namespace ConsoleApp5
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        Student su = new Student();
+        try
         {
-            Student su = new Student();
             su.Name = "Student Name";
             su.ID = "12345678";
-            su.GPA = 7.5f;
+            su.GPA = 3.22f;
             Console.WriteLine("Student name : " + su.Name);
             Console.WriteLine("Student ID   : " + su.ID);
             Console.WriteLine("Student GPA  : " + su.GPA);
-            Console.ReadLine();
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        Console.ReadLine();
     }
-    class Student
+}
+class Student
+{
+    private string name;
+    private string id;
+    private float gpa;
+    public string Name
     {
-        private string name;
-        private string id;
-        private float gpa;
-        public string Name
+        get { return name; }
+        set { name = value; }
+    }
+    public string ID
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public float GPA
+    {
+        get
         {
-            get { return name; }
-            set { name = value; }
+            return gpa;
         }
-        public string ID
+        set
         {
-            get { return id; }
-            set { id = value; }
-        }
-        public float GPA
-        {
-            get { return gpa; }
-            set { gpa = value; }
+            if (value > 0.0 && value <= 4.0)
+                gpa = value;
+            else
+                throw (new Exception("Error!!!! invalid GPA"));
         }
     }
 }
